@@ -20,6 +20,7 @@ namespace GetTopCoins.Helpers
             foreach (var symbol in symbols)
             {
                 change = await binanceApi.CalculateChange(symbol);
+                Console.WriteLine($"{change.symbol} - {change.priceSevenDaysAgo} - {change.currentPrice} - {Math.Round((change.change * 100), 2)}%");
                 changeList.Add(change);
             }
 
@@ -28,7 +29,7 @@ namespace GetTopCoins.Helpers
 
         public static List<Symbol> GetSortedChangeList(List<Symbol> symbols)
         {
-            return symbols.OrderBy(s => s.change).ToList();
+            return symbols.OrderByDescending(s => s.change).ToList();
         }
     }
 }

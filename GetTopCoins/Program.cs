@@ -1,16 +1,17 @@
-﻿// See https://aka.ms/new-console-template for more information
-
+﻿using ClosedXML.Excel;
+using GetTopCoins.Data;
+using GetTopCoins.Excel;
 using GetTopCoins.Helpers;
 
-var symbols = new List<string>() {
-    "1INCHBTC", "1INCHUSDT", "AAVEBTC"
-};
+var symbolList = await ListOperations.GetSymbolChangeList(Symbols.symbols);
 
-var symbolList = await ListOperations.GetSymbolChangeList(symbols);
+var workbook = new XLWorkbook();
+var worksheet = workbook.Worksheets.Add("Top Coins");
 
-foreach (var symbol in symbolList)
-{
-    Console.WriteLine($"{symbol.symbol} - {symbol.priceSevenDaysAgo} - {symbol.currentPrice} - {Math.Round((symbol.change * 100), 2)}%");
-}
+var xlWorkbook = new TopCoinsWorkbook(workbook, worksheet);
 
+workbook = xlWorkbook.CreateWorkbookWithData(symbolList);
+Console.WriteLine("Saving topcoins");
+workbook.SaveAs("topcoins.xlsx");
+Console.WriteLine("Saved");
 Console.ReadLine();

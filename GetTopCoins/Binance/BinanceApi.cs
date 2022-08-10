@@ -76,7 +76,7 @@ namespace GetTopCoins.Binance
             {
                 change = (currentPrice - priceSevenDaysAgo) / priceSevenDaysAgo;
             }
-
+                
             return new Symbol()
             {
                 symbol = symbol,

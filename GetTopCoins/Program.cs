@@ -14,7 +14,7 @@ var worksheet = workbook.Worksheets.Add("Top Coins");
 var xlWorkbook = new TopCoinsWorkbook(workbook, worksheet);
 
 workbook = xlWorkbook.CreateWorkbookWithData(symbolList);
-Console.WriteLine("Saving topcoins");
+Console.WriteLine("Saving topcoins as Excel");
 workbook.SaveAs("topcoins.xlsx");
 Console.WriteLine("Saved");
 Console.ReadLine();

@@ -51,13 +51,6 @@ namespace GetTopCoins.Excel
                 _worksheet.Cell(_currentRow, _column++).Value = headerValue;
             }
             
-            
-            
-            
-            
-            
-            
-
             _currentRow++;
         }
 

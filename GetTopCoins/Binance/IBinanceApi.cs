@@ -14,7 +14,7 @@ namespace GetTopCoins.Binance
     {
         Task<decimal> GetHistoricalPriceAsync(string symbol);
 
-        Task<decimal> GetLastPriceAsync(string symbol);
+        Task<decimal> GetCurrentAveragePriceAsync(string symbol);
 
         Task<Symbol> CalculateChange(string symbol);
     }

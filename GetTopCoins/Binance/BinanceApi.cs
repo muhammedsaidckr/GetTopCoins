@@ -47,31 +47,25 @@ namespace GetTopCoins.Binance
 
         }
 
-        public async Task<decimal> GetLastPriceAsync(string symbol)
+        public async Task<decimal> GetCurrentAveragePriceAsync(string symbol)
         {
-            var avgPrice = 0.0M;
             try
             {
                 var avgPrices = await _binanceClient.SpotApi.ExchangeData.GetCurrentAvgPriceAsync(symbol);
 
-                if (avgPrices.Success)
-                {
-                    avgPrice = avgPrices.Data.Price;
-                }
+                return avgPrices.Success ? avgPrices.Data.Price : 0.0M;
             }
             catch
             {
-                avgPrice = 0.0M;
+                return 0.0M; // TODO: Handle exception
             }
-
-            return avgPrice;
         }
 
         public async Task<Symbol> CalculateChange(string symbol)
         {
             var change = 0.0M;
             var priceSevenDaysAgo = await GetHistoricalPriceAsync(symbol);
-            var currentPrice = await GetLastPriceAsync(symbol);
+            var currentPrice = await GetCurrentAveragePriceAsync(symbol);
             if (priceSevenDaysAgo > 0 && currentPrice > 0)
             {
                 change = (currentPrice - priceSevenDaysAgo) / priceSevenDaysAgo;

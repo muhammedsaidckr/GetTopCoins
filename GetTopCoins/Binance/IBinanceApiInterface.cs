@@ -10,7 +10,7 @@ using GetTopCoins.Models;
 
 namespace GetTopCoins.Binance
 {
-    public interface IBinanceApiInterface
+    public interface IBinanceApi
     {
         Task<decimal> GetHistoricalPriceAsync(string symbol);
 

@@ -5,6 +5,9 @@ using GetTopCoins.Helpers;
 
 var symbolList = await ListOperations.GetSymbolChangeList(Symbols.symbols);
 
+
+
+
 var workbook = new XLWorkbook();
 var worksheet = workbook.Worksheets.Add("Top Coins");
 

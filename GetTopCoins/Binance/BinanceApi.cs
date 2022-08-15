@@ -15,7 +15,7 @@ using GetTopCoins.Models;
 
 namespace GetTopCoins.Binance
 {
-    public class BinanceApi : IBinanceApiInterface
+    public class BinanceApi : IBinanceApi
     {
         private readonly BinanceClient _binanceClient;
         public BinanceApi()
